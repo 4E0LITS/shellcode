@@ -1,0 +1,1 @@
+A repository of shellcode I've written. Each piece of shellcode is included in both assembly sourceode (NASM) and compiled form. Compiled shellcode can easily be inserted into scripts or programs using [shelldump](https://github.com/4E0LITS/shelldump).
