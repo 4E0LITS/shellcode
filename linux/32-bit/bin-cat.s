@@ -2,7 +2,7 @@ BITS 32
     ;; /bin/cat shellcode for 32-bit linux. 
 
     ;; execve(const char *filename, char *const argv[], char *const envp[])
-    ;;   0x0b            */bin/cat, [*/bin/cat, *PATH],              *NULL)
+    ;;   0x0b            &/bin/cat, [&/bin/cat, &PATH],              &NULL)
     ;;    eax,                 ebx,                ecx,                edx
 
     ;; "/bin/cat" on stack
